@@ -17,11 +17,11 @@ class Comparator {
 		writeln( "start compare" );
 
 		_currentNode = 0;
-		foreach( Node node; _spec.nodes ){
-			writeln( "-> ", node.id() );
+		foreach( Node node; _spec._nodes ){
+			node.printProperties();
 			char[] data;
 			data.length = node.getDataSize();
-			//writeln( data.length );
+
 			_sourceFile.read( data );
 
 			node.isValid( data );

@@ -5,11 +5,15 @@ class Specification {
 	}
 
 	void add(Node node) {
-		nodes.length= nodes.length + 1;
-		nodes[nodes.length - 1] = node;
+		_nodes.length= _nodes.length + 1;
+		_nodes[_nodes.length - 1] = node;
 	}
 
-	Node[] nodes;
+	string _id;
+	string _label;
+	string _description;
+	Node[] _nodes;
+	string[] _extensions;
 }
 
 /// code sample generated
@@ -17,11 +21,11 @@ unittest {
 	auto s = new Specification();
 	string nodeId = "test";
 	auto n = new Node(nodeId, EDataType.eChar);
-	assert(s.nodes.length == 0);
+	assert(s._nodes.length == 0);
 
 	s.add( n );
 
-	assert(s.nodes.length == 1);
-	assert(s.nodes[0].id() == nodeId);
-	assert(s.nodes[0].type() == EDataType.eChar);
+	assert(s._nodes.length == 1);
+	assert(s._nodes[0].id() == nodeId);
+	assert(s._nodes[0].type() == EDataType.eChar);
 }

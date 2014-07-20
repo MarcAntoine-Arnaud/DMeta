@@ -11,6 +11,23 @@ enum EDataType {
 	eDouble,
 	eString,
 	eWord,	
+	eRaw,
+}
+
+string getString( EDataType type ) {
+	switch( type ) {
+		case EDataType.eUnknown: return "unknown";
+		case EDataType.eBit: return "bit";
+		case EDataType.eChar: return "char";
+		case EDataType.eShort: return "short";
+		case EDataType.eHalf: return "half";
+		case EDataType.eInt: return "int";
+		case EDataType.eFloat: return "float";
+		case EDataType.eDouble: return "double";
+		case EDataType.eString: return "string";
+		case EDataType.eWord: return "word";
+		case EDataType.eRaw: return "raw";
+	}
 }
 
 class Node{
@@ -25,6 +42,12 @@ class Node{
 		ref EDataType type() { return _type; }
 	}
 
+	void printProperties(){
+		writeln( "----------" );
+		writeln( "id        ", _id );
+		writeln( "type      ", getString( _type ) );
+	}
+
 	void isValid(ref char[] buffer){
 		writeln( "\t- generic check" );
 	}
@@ -33,10 +56,7 @@ class Node{
 		return 0;
 	}
 
-	//void setData(ref char[] buffer){
-	//	throw new Exception( "generic set Data error !" );
-	//}
-
 	string _id;
 	EDataType _type;
+	Node[] childNodes;
 }

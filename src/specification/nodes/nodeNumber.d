@@ -38,10 +38,14 @@ class NodeNumber(NumberType) : Node {
 				}
 			}
 			if( is(NumberType == char) ) {
-				writeln( "   value = ", cast(int)number[0] );
+				writeln( "value     ", cast(int)number[0] );
 			} else {
-				writeln( "   value = ", number[0] );
+				writeln( "value     ", number[0] );
 			}
+
+			//foreach( child; childNodes )
+			//	child.isValid();
+			
 		}
 
 		size_t getDataSize() {

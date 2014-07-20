@@ -1,15 +1,16 @@
 Import("env")
 
-specification = env.SharedLibrary(
+specification = env.StaticLibrary(
 	'specification',
-	Glob( 'specification/*.d' ),
+	Glob( 'specification/*.d' ) +
+	Glob( 'specification/*/*.d' ),
 	LINKFLAGS = [ '-m64', '-fPIC' ],
 	DFLAGS = [ '-fPIC', '-unittest' ],
 	LIBPATH = '/lib64',
 	DPATH=['.']
 )
 
-comparator = env.SharedLibrary(
+comparator = env.StaticLibrary(
 	'comparator',
 	Glob( 'comparator/*.d' ),
 	LINKFLAGS = [ '-m64', '-fPIC' ],

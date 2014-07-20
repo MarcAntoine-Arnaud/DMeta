@@ -1,17 +1,7 @@
-import specification.node;
-import std.stdio;
+import specification.nodes.nodeNumber;
 
-class NodeInt : Node {
-
+class NodeInt : NodeNumber!(int) {
 	this(ref string id) {
-		super( id, EDataType.eInt );
+		super( id );
 	}
-
-	override {
-		void isValid(ref char[] buffer) {
-			writeln( "   check int" );
-		}
-	}
-
-	int _data;
 }

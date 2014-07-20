@@ -1,17 +1,7 @@
-import specification.node;
-import std.stdio;
+import specification.nodes.nodeNumber;
 
-class NodeShort : Node {
-
+class NodeShort : NodeNumber!(short) {
 	this(ref string id) {
-		super( id, EDataType.eShort );
+		super( id );
 	}
-
-	override {
-		void isValid(ref char[] buffer) {
-			writeln( "   check short" );
-		}
-	}
-
-	short _data;
 }

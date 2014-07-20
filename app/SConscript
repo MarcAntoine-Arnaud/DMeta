@@ -5,7 +5,11 @@ env.Program(
 	'meta',
 	Glob( 'dmeta/*.d' ),
 	LINKFLAGS = [ '-m64', '-fPIC' ],
-	DFLAGS = [ '-fPIC', '-unittest' ],
+	DFLAGS = [ '-Isrc', '-fPIC', '-unittest' ],
 	LIBPATH = [ '/lib64', '#/build/src' ],
-	LIBS = [ 'specification', 'phobos2' ],
+	LIBS = [
+		'specification',
+		'comparator',
+		'phobos2'
+	],
 )

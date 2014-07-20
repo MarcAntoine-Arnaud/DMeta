@@ -18,7 +18,10 @@ class Node{
 		this._type = type;
 	}
 
-	@property ref string id() { return _id; }
+	@property {
+		ref string id() { return _id; }
+		ref EDataType type() { return _type; }
+	}
 
 	string _id;
 	EDataType _type;

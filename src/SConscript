@@ -9,4 +9,15 @@ specification = env.SharedLibrary(
 	DPATH=['.']
 )
 
+comparator = env.SharedLibrary(
+	'comparator',
+	Glob( 'comparator/*.d' ),
+	LINKFLAGS = [ '-m64', '-fPIC' ],
+	DFLAGS = [ '-fPIC', '-unittest' ],
+	LIBPATH = [ '/lib64', '#/build/src' ],
+	DPATH= [ '.' ],
+	LIBS = [ 'specification' ]
+)
+
 Export( 'specification' )
+Export( 'comparator' )

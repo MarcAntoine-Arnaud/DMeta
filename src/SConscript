@@ -1,0 +1,12 @@
+Import("env")
+
+specification = env.SharedLibrary(
+	'specification',
+	Glob( 'specification/*.d' ),
+	LINKFLAGS = [ '-m64', '-fPIC' ],
+	DFLAGS = [ '-fPIC', '-unittest' ],
+	LIBPATH = '/lib64',
+	DPATH=['.']
+)
+
+Export( 'specification' )

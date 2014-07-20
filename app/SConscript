@@ -1,8 +1,11 @@
-Import("env")
+Import( 'env' )
+Import( 'specification')
 
 env.Program(
 	'meta',
 	Glob( 'dmeta/*.d' ),
-	LINKFLAGS = '-m64',
-	LIBPATH = '/lib64',
+	LINKFLAGS = [ '-m64', '-fPIC' ],
+	DFLAGS = [ '-fPIC', '-unittest' ],
+	LIBPATH = [ '/lib64', '#/build/src' ],
+	LIBS = [ 'specification', 'phobos2' ],
 )

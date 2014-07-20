@@ -21,6 +21,7 @@ class Comparator {
 			writeln( "-> ", node.id() );
 			char[] data;
 			data.length = node.getDataSize();
+			//writeln( data.length );
 			_sourceFile.read( data );
 
 			node.isValid( data );

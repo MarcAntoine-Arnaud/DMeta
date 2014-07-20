@@ -23,18 +23,29 @@ class NodeNumber(NumberType) : Node {
 
 	override {
 		void isValid(ref char[] buffer) {
-			foreach( min, max ; _min, _max )
+			assert( buffer.length == NumberType.sizeof );
+			auto number = cast(NumberType[])buffer;
+
+			foreach( i; 0 .. _min.length )
 			{
-				if( buffer[0] < min || buffer[0] > max )
+				NumberType min = _min[ i ];
+				NumberType max = _max[ i ];
+
+				if(number[0] < min || number[0] > max)
 				{
 					string msg = "number out of range";
 					throw new Exception( msg );
 				}
 			}
+			if( is(NumberType == char) ) {
+				writeln( "   value = ", cast(int)number[0] );
+			} else {
+				writeln( "   value = ", number[0] );
+			}
 		}
 
 		size_t getDataSize() {
-			return NumberType.sizeof; // 1 byte
+			return NumberType.sizeof;
 		}
 	}
 

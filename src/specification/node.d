@@ -16,6 +16,7 @@ enum EDataType {
 
 string getString( EDataType type ) {
 	switch( type ) {
+		default:
 		case EDataType.eUnknown: return "unknown";
 		case EDataType.eBit: return "bit";
 		case EDataType.eChar: return "char";

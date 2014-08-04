@@ -1,4 +1,5 @@
-DMeta
+dAME
 =====
 
-Metadata extractor
+d Automated Metadata Extractor
+

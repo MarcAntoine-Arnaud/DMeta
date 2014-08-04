@@ -31,7 +31,7 @@ void main(string[] args) {
 
 
 	if( help ) {
-		writeln( "meta - ", majorVersion, ".", minorVersion );
+		writeln( "dame - ", majorVersion, ".", minorVersion );
 		writeln( "" );
 		writeln( " file: input filename" );
 		writeln( " verbose: enable verbosity" );

@@ -2,14 +2,14 @@ Import( 'env' )
 Import( 'specification')
 
 env.Program(
-	'meta',
-	Glob( 'dmeta/*.d' ),
-	LINKFLAGS = [ '-m64', '-fPIC' ],
-	DFLAGS = [ '-Isrc', '-fPIC', '-unittest' ],
-	LIBPATH = [ '/lib64', '#/build/src' ],
-	LIBS = [
-		'specification',
-		'comparator',
-		'phobos2'
-	],
+        'dame',
+        Glob( 'appDame/*.d' ),
+        LINKFLAGS = [ '-m64', '-fPIC' ],
+        DFLAGS = [ '-Isrc', '-fPIC', '-unittest' ],
+        LIBPATH = [ '/lib64', '#/build/src' ],
+        LIBS = [
+                'specification',
+                'comparator',
+                'phobos2'
+        ],
 )

@@ -4,7 +4,7 @@ import specification.nodes.nodeChar;
 import specification.nodes.nodeInt;
 
 class WavSpecification : Specification{
-	string root = "root";
+	string rootId = "root";
 	string chunkRiffId = "chunckRIFF";
 	string chunkWaveId = "chunckWAVE";
 	string chunkSubRiffId = "subRIFF";
@@ -17,7 +17,7 @@ class WavSpecification : Specification{
 		_description = "Microsoft and IBM audio file format standard for storing an audio bitstream on PCs.";
 		_extensions =  [ "wav", "wave" ];
 		
-		auto root = new NodeGroup( root );
+		auto root = new NodeGroup( rootId );
 		auto riffChunk = new NodeGroup( chunkRiffId );
 		auto waveChunk = new NodeGroup( chunkWaveId );
 
@@ -43,7 +43,7 @@ class WavSpecification : Specification{
 		riffChunk.addChild( iChunk );
 		riffChunk.addChild( fChunk );
 		riffChunk.addChild( fChunk );
-		//riffChunk.addChild( chunkSize );
+
 		waveChunk.addChild( wRiffType );
 		waveChunk.addChild( aRiffType );
 		waveChunk.addChild( vRiffType );
@@ -54,6 +54,5 @@ class WavSpecification : Specification{
 		root.addChild( waveChunk );
 
 		add( root );
-
 	}
 }

@@ -1,8 +1,10 @@
 import specification.spec;
+import specification.nodes.nodeGroup;
 import specification.nodes.nodeChar;
 import specification.nodes.nodeShort;
 
 class MxfSpecification : Specification{
+	string rootId = "root";
 	string objectIdentifierId = "objectIdentifier";
 	string labelSizeId = "labelSize";
 	string designatorId = "designator";
@@ -15,6 +17,8 @@ class MxfSpecification : Specification{
 		_description = "container format for professional digital video and audio media defined by a set of SMPTE standards.";
 		_extensions =  [ "mxf" ];
 		
+		auto root = new NodeGroup( rootId );
+
 		auto objectIdentifier = new NodeChar( objectIdentifierId );
 		auto labelSize = new NodeChar( labelSizeId );
 		auto designator = new NodeShort( designatorId );
@@ -27,10 +31,12 @@ class MxfSpecification : Specification{
 		registryCategoryDesignator.setValue( 0x02 );
 		registryDesignator.setValue( 0x05 );
 
-		add( objectIdentifier );
-		add( labelSize );
-		add( designator );
-		add( registryCategoryDesignator );
-		add( registryDesignator );
+		root.addChild( objectIdentifier );
+		root.addChild( labelSize );
+		root.addChild( designator );
+		root.addChild( registryCategoryDesignator );
+		root.addChild( registryDesignator );
+
+		add( root );
 	}
 }

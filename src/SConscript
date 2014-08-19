@@ -4,7 +4,7 @@ specification = env.StaticLibrary(
 	'specification',
 	Glob( 'specification/*.d' ) +
 	Glob( 'specification/*/*.d' ),
-	LINKFLAGS = [ '-m64', '-fPIC' ],
+	LINKFLAGS = [  '-fPIC' ],
 	DFLAGS = [ '-fPIC', '-unittest' ],
 	LIBPATH = '/lib64',
 	DPATH=['.']

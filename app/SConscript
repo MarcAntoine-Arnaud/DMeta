@@ -1,10 +1,11 @@
 Import( 'env' )
 Import( 'specification')
+Import( 'comparator' )
 
 env.Program(
         'dame',
         Glob( 'appDame/*.d' ),
-        LINKFLAGS = [ '-m64', '-fPIC' ],
+        LINKFLAGS = [ '-fPIC' ],
         DFLAGS = [ '-Isrc', '-fPIC', '-unittest' ],
         LIBPATH = [ '/lib64', '#/build/src' ],
         LIBS = [

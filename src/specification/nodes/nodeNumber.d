@@ -1,4 +1,6 @@
 import specification.node;
+import comparator.sourceFile;
+
 import std.stdio;
 import std.range;
 import std.digest.digest;
@@ -22,9 +24,12 @@ class NodeNumber(NumberType) : Node {
 	}
 
 	override {
-		void isValid(ref char[] buffer) {
-			assert( buffer.length == NumberType.sizeof );
-			auto number = cast(NumberType[])buffer;
+		void isValid(ref SourceFile file) {
+			char[] data;
+			data.length = getDataSize();
+			file.read( data );
+
+			auto number = cast(NumberType[])data;
 
 			foreach( i; 0 .. _min.length )
 			{

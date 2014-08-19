@@ -19,12 +19,7 @@ class Comparator {
 		_currentNode = 0;
 		foreach( Node node; _spec._nodes ){
 			node.printProperties();
-			char[] data;
-			data.length = node.getDataSize();
-
-			_sourceFile.read( data );
-
-			node.isValid( data );
+			node.isValid( _sourceFile );
 		}
 		writeln( "end compare" );
 	}

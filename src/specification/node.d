@@ -1,7 +1,9 @@
+import comparator.sourceFile;
 import std.stdio;
 
 enum EDataType {
 	eUnknown = 0,
+	eGroup,
 	eBit,
 	eChar,
 	eShort,
@@ -49,15 +51,30 @@ class Node{
 		writeln( "type      ", getString( _type ) );
 	}
 
-	void isValid(ref char[] buffer){
+	void isValid(ref SourceFile file){
 		writeln( "\t- generic check" );
+		isValidChilds( file );
+	}
+
+	void isValidChilds(ref SourceFile file){
+		writeln( "-> childs check" );
+		foreach( Node child; _childNodes ){
+			child.printProperties();
+			child.isValid( file );
+		}
+		writeln( "-> end childs check" );
 	}
 
 	size_t getDataSize(){
 		return 0;
 	}
 
+	void addChild( Node node ){
+		_childNodes.length = _childNodes.length + 1;
+		_childNodes[_childNodes.length - 1] = node;
+	}
+
 	string _id;
 	EDataType _type;
-	Node[] childNodes;
+	Node[] _childNodes;
 }

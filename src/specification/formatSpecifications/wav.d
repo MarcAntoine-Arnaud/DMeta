@@ -1,9 +1,13 @@
 import specification.spec;
+import specification.nodes.nodeGroup;
 import specification.nodes.nodeChar;
 import specification.nodes.nodeInt;
 
 class WavSpecification : Specification{
-	string chunkId = "chunckRIFF";
+	string root = "root";
+	string chunkRiffId = "chunckRIFF";
+	string chunkWaveId = "chunckWAVE";
+	string chunkSubRiffId = "subRIFF";
 	string chunkSizeId = "chunckSize";
 	string riffTypeId = "riffType";
 	
@@ -13,9 +17,13 @@ class WavSpecification : Specification{
 		_description = "Microsoft and IBM audio file format standard for storing an audio bitstream on PCs.";
 		_extensions =  [ "wav", "wave" ];
 		
-		auto rChunk = new NodeChar( chunkId );
-		auto iChunk = new NodeChar( chunkId );
-		auto fChunk = new NodeChar( chunkId );
+		auto root = new NodeGroup( root );
+		auto riffChunk = new NodeGroup( chunkRiffId );
+		auto waveChunk = new NodeGroup( chunkWaveId );
+
+		auto rChunk = new NodeChar( chunkSubRiffId );
+		auto iChunk = new NodeChar( chunkSubRiffId );
+		auto fChunk = new NodeChar( chunkSubRiffId );
 		auto chunkSize = new NodeInt( chunkSizeId );
 		auto wRiffType = new NodeChar( riffTypeId );
 		auto aRiffType = new NodeChar( riffTypeId );
@@ -31,15 +39,21 @@ class WavSpecification : Specification{
 		vRiffType.setValue( 'V' );
 		eRiffType.setValue( 'E' );
 		
-		add( rChunk );
-		add( iChunk );
-		add( fChunk );
-		add( fChunk );
-		add( chunkSize );
-		add( wRiffType );
-		add( aRiffType );
-		add( vRiffType );
-		add( eRiffType );
+		riffChunk.addChild( rChunk );
+		riffChunk.addChild( iChunk );
+		riffChunk.addChild( fChunk );
+		riffChunk.addChild( fChunk );
+		//riffChunk.addChild( chunkSize );
+		waveChunk.addChild( wRiffType );
+		waveChunk.addChild( aRiffType );
+		waveChunk.addChild( vRiffType );
+		waveChunk.addChild( eRiffType );
+
+		root.addChild( riffChunk );
+		root.addChild( chunkSize );
+		root.addChild( waveChunk );
+
+		add( root );
 
 	}
 }

@@ -48,9 +48,7 @@ class NodeNumber(NumberType) : Node {
 				writeln( "value     ", number[0] );
 			}
 
-			//foreach( child; childNodes )
-			//	child.isValid();
-			
+			super.isValid( file );
 		}
 
 		size_t getDataSize() {

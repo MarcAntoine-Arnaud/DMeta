@@ -9,8 +9,8 @@ class NodeGroup : Node {
 
 	override {
 		void isValid(ref SourceFile file) {
-			// every time true
-			isValidChilds( file );
+			// valid if childs are fine
+			super.isValid( file );
 		}
 
 		size_t getDataSize() {

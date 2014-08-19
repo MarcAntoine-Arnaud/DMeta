@@ -5,7 +5,7 @@ class Specification {
 	}
 
 	void add(Node node) {
-		_nodes.length= _nodes.length + 1;
+		_nodes.length = _nodes.length + 1;
 		_nodes[_nodes.length - 1] = node;
 	}
 

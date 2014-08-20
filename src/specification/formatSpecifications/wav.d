@@ -94,7 +94,6 @@ class WavSpecification : Specification{
 
 		fmtChunk.addChild( chunkSize );
 		fmtChunk.addChild( fmtType );
-		//fmtChunk.addChild( chunkSize );
 		fmtChunk.addChild( channelCount );
 		fmtChunk.addChild( sampleRate );
 		fmtChunk.addChild( byteRate );

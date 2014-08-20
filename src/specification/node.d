@@ -16,6 +16,11 @@ enum EDataType {
 	eRaw,
 }
 
+enum EndiannessType {
+	eBig = 0,
+	eLittle,
+}
+
 string getString( EDataType type ) {
 	switch( type ) {
 		default:
@@ -38,6 +43,7 @@ class Node{
 	this(ref string id, EDataType type=EDataType.eUnknown) {
 		this._id = id;
 		this._type = type;
+		this._endianess = EndiannessType.eBig;
 	}
 
 	@property {
@@ -74,7 +80,18 @@ class Node{
 		_childNodes[_childNodes.length - 1] = node;
 	}
 
+	void setEndianness( EndiannessType endianess ) {
+		_endianess = endianess;
+	}
+
+	auto ref updateEndianess(char[] data, EndiannessType _endianess) {
+		if( _endianess == EndiannessType.eBig )
+			data.reverse;
+		return data;
+	}
+
 	string _id;
 	EDataType _type;
+	EndiannessType _endianess;
 	Node[] _childNodes;
 }

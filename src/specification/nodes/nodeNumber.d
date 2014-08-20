@@ -29,6 +29,8 @@ class NodeNumber(NumberType) : Node {
 			data.length = getDataSize();
 			file.read( data );
 
+			data = updateEndianess( data, _endianess );
+
 			auto number = cast(NumberType[])data;
 
 			foreach( i; 0 .. _min.length )

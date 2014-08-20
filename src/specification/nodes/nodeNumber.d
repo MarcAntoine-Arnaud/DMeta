@@ -49,6 +49,9 @@ class NodeNumber(NumberType) : Node {
 			} else {
 				writeln( "value     ", number[0] );
 			}
+			if( number[0] in _map ){
+				writeln( "mapping to -> ", _map[ number[0] ] );
+			}
 
 			super.isValid( file );
 		}
@@ -69,6 +72,11 @@ class NodeNumber(NumberType) : Node {
 		_max[_max.length - 1] = max;
 	}
 
+	void addMapValue( NumberType value, string str ) {
+		_map[value] = str;
+	}
+
 	NumberType[] _min;
 	NumberType[] _max;
+	string[NumberType] _map;
 }

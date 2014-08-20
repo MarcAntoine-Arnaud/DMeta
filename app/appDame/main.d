@@ -49,8 +49,8 @@ void main(string[] args) {
 
 	writeln( "start extract meta" );
 
-	//auto s = new Specification();
-	WavSpecification s = new WavSpecification();;
+	//auto s = new WavSpecification();
+	auto s = new MxfSpecification();
 	auto c = new Comparator( s, filename );
 
 	c.run();

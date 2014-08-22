@@ -31,7 +31,7 @@ class MxfSpecification : Specification{
 		
 		auto root = new NodeGroup( rootId );
 
-		auto key = new NodeGroup( keyId );
+		auto partitionKey = new NodeGroup( keyId );
 
 		auto objectIdentifier = new NodeChar( objectIdentifierId );
 		auto labelSize = new NodeChar( labelSizeId );
@@ -65,6 +65,11 @@ class MxfSpecification : Specification{
 		partitionStatus.setValue( 0x04 );
 		reserved.setValue( 0x00 );
 
+		//designator.addMapValue( 0x01, "Metadata Dictionaries Section" );
+		//designator.addMapValue( 0x02, "Essence Dictionaries Section" );
+		//designator.addMapValue( 0x03, "Control Dictionaries Section" );
+		//designator.addMapValue( 0x04, "Types Dictionaries" );
+
 		setPackKind.addMapValue( 0x02, "MXF Header Partition" );
 		setPackKind.addMapValue( 0x03, "MXF Body Partition" );
 		setPackKind.addMapValue( 0x04, "MXF Footer Partition" );
@@ -74,23 +79,23 @@ class MxfSpecification : Specification{
 		partitionStatus.addMapValue( 0x03, "Open and Complete" );
 		partitionStatus.addMapValue( 0x04, "Closed and Incomplete" );
 
-		key.addChild( objectIdentifier );
-		key.addChild( labelSize );
-		key.addChild( designator );
-		key.addChild( registryCategoryDesignator );
-		key.addChild( registryDesignator );
-		key.addChild( structureDesignator );
-		key.addChild( versionNumber );
-		key.addChild( itemDesignator );
-		key.addChild( organization );
-		key.addChild( application );
-		key.addChild( structureVersion );
-		key.addChild( structureKind );
-		key.addChild( setPackKind );
-		key.addChild( partitionStatus );
-		key.addChild( reserved );
+		partitionKey.addChild( objectIdentifier );
+		partitionKey.addChild( labelSize );
+		partitionKey.addChild( designator );
+		partitionKey.addChild( registryCategoryDesignator );
+		partitionKey.addChild( registryDesignator );
+		partitionKey.addChild( structureDesignator );
+		partitionKey.addChild( versionNumber );
+		partitionKey.addChild( itemDesignator );
+		partitionKey.addChild( organization );
+		partitionKey.addChild( application );
+		partitionKey.addChild( structureVersion );
+		partitionKey.addChild( structureKind );
+		partitionKey.addChild( setPackKind );
+		partitionKey.addChild( partitionStatus );
+		partitionKey.addChild( reserved );
 
-		root.addChild( key );
+		root.addChild( partitionKey );
 
 		add( root );
 	}

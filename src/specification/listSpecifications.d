@@ -1,5 +1,6 @@
 import specification.spec;
 import specification.formatSpecifications.wav;
+import specification.formatSpecifications.bwf;
 import specification.formatSpecifications.mxf;
 
 class ListSpecifications {
@@ -10,8 +11,10 @@ class ListSpecifications {
 
 	void load(){
 		auto wavSpec = new WavSpecification();
+		auto bwfSpec = new BwfSpecification();
 		auto mxfSpec = new MxfSpecification();
 		add( wavSpec );
+		add( bwfSpec );
 		add( mxfSpec );
 	}
 

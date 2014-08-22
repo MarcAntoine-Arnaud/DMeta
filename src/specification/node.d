@@ -59,7 +59,17 @@ class Node{
 
 	void isValid(ref SourceFile file){
 		writeln( "\t- generic check" );
-		isValidChilds( file );
+		auto pos = file.getPosition();
+		try{
+			isValidChilds( file );
+		}
+		catch( Exception e ){
+			if( ! _optional ){
+				throw e;
+			}
+			writeln( "child of optional node is not valid: ", e.msg );
+			file.setPosition( pos - getDataSize() );
+		}
 	}
 
 	void isValidChilds(ref SourceFile file){
@@ -84,6 +94,10 @@ class Node{
 		_endianess = endianess;
 	}
 
+	void setOptional( bool optional = true ) {
+		_optional = optional;
+	}
+
 	auto ref updateEndianess(char[] data, EndiannessType _endianess) {
 		if( _endianess == EndiannessType.eBig )
 			data.reverse;
@@ -94,4 +108,5 @@ class Node{
 	EDataType _type;
 	EndiannessType _endianess;
 	Node[] _childNodes;
+	bool _optional;
 }

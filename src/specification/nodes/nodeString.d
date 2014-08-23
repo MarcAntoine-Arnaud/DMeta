@@ -16,20 +16,23 @@ class NodeString : Node {
 		void isValid(ref SourceFile file) {
 			char[] data;
 			data.length = getDataSize();
-			file.read( data );
+			if( data.length ){
+				file.read( data );
 
-			if( _values.length ){
-				bool matchFound = false;
-				foreach( string value; _values ){
-					if( value == data ){
-						matchFound = true;
-						break;
+				if( _values.length ){
+					bool matchFound = false;
+					foreach( string value; _values ){
+						if( value == data ){
+							matchFound = true;
+							break;
+						}
+					}
+					if( ! matchFound ) {
+						string msg = "incorrect string";
+						throw new Exception( msg );
 					}
 				}
-				if( ! matchFound ) {
-					string msg = "incorrect string";
-					throw new Exception( msg );
-				}
+				writeln( "value     ", data );
 			}
 
 			super.isValid( file );

@@ -1,0 +1,36 @@
+.\" Manpage for dame.
+.\" Contact arnaud.marcantoine@gmail.com to correct errors or typos.
+.TH man 1 "August 2014" "0.0.1" "dame man page"
+.SH NOM
+dame - extract media metadatas
+.SH SYNOPSIS
+.B dame
+[
+.I FILE
+]
+.SH DESCRIPTION
+Extract metadatas based on specification (present in the library or in human readable format).
+dame is for d Automated Metadata Extractor.
+
+.SH OPTIONS
+.IP "-f, --files"
+specify input file.
+.IP "-s, --spec"
+select the specification id (look --specs to list them).
+.IP "--specs"
+list specification id and label.
+.IP "-v, --verbose"
+enable the verbose mode.
+
+.SH ENVIRONMENT
+.IP DAME_SPECS
+specify directory which contains some specifications usable by dame.
+
+.SH BUGS
+Currently in development.
+
+.SH AUTHOR
+Written by Marc-Antoine ARNAUD <arnaud.marcantoine@gmail.com>
+
+.SH COPYRIGHT
+Licence LGPL-v3.0

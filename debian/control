@@ -1,0 +1,11 @@
+Source: dame
+Section: main
+Priority: optional
+Maintainer: Marc-Antoine ARNAUD <arnaud.marcantoine@gmail.com>
+Build-Depends: debhelper (>= 4.1.16), scons, gdc
+Package: dame
+Version: 0.0.1
+License: LGPL-v3.0
+Architecture: any
+Description: Automated Metadata Extractor
+ Extractor of media files, based on specification files in human readable format.

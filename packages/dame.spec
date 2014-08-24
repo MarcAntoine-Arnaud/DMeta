@@ -6,7 +6,7 @@ Release: 0
 Group: Applications/File
 BuildRequires: scons >= 2.3.0
 BuildRequires: dmd
-Source: %{name}-%{version}-%{release}src.tar.gz
+Source: %{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
 
 %description

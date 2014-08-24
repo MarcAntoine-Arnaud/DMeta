@@ -1,8 +1,10 @@
-Import( 'env' )
-Import( 'specification')
-Import( 'comparator' )
+Import('env')
+Import('specification')
+Import('comparator')
 
-env.Program(
+import os
+
+dameApp = env.Program(
         'dame',
         Glob( 'appDame/*.d' ),
         LINKFLAGS = [ '-fPIC' ],
@@ -14,3 +16,9 @@ env.Program(
                 'phobos2'
         ],
 )
+
+install_bin_dir = os.path.join(ARGUMENTS.get('prefix', '/usr'), 'bin/')
+install_man_dir = os.path.join(ARGUMENTS.get('prefix', '/usr'), 'share/man/man1')
+
+Alias ('install', env.Install(install_bin_dir, dameApp))
+Alias ('install', env.Install(install_man_dir, File( 'appDame/dame.man' )))

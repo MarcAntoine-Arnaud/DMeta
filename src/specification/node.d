@@ -61,7 +61,8 @@ class Node{
 		writeln( "\t- generic check" );
 		auto pos = file.getPosition();
 		try{
-			isValidChilds( file );
+			if( _childNodes.length )
+				isValidChilds( file );
 		}
 		catch( Exception e ){
 			if( ! _optional ){

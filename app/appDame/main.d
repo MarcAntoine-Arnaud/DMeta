@@ -6,7 +6,7 @@ import std.getopt;
 
 int majorVersion = 0;
 int minorVersion = 0;
-int releaseVersion = 0;
+int releaseVersion = 1;
 
 void main(string[] args) {
 
@@ -21,22 +21,22 @@ void main(string[] args) {
 
 	getopt(
 		args,
-		"file|f", &filename,
-		"spec|s", &spec,
+		"f|file", &filename,
+		"s|spec", &spec,
 		"specs", &specs,
-		"verbose|v", &verbose,
-		"color|c", &color,
-		"help|h", &help,
+		"v|verbose", &verbose,
+		"c|color", &color,
+		"h|help", &help,
 		);
 
 
 	if( help ) {
 		writeln( "dame - ", majorVersion, ".", minorVersion, ".", releaseVersion );
 		writeln( "" );
-		writeln( " --file -f: \tinput filename" );
-		writeln( " --spec -s: \tspecification id" );
+		writeln( " -f, --file: \tinput filename" );
+		writeln( " -s, --spec: \tspecification id" );
 		writeln( " --specs:   \tlist specification id" );
-		writeln( " --verbose -v:\tenable verbosity" );
+		writeln( " -v, --verbose:\tenable verbosity" );
 		writeln( "" );
 		writeln( "Author:" );
 		writeln( " Marc-Antoine ARNAUD - arnaud.marcantoine@gmail.com" );

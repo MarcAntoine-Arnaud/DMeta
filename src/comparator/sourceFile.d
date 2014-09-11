@@ -5,6 +5,10 @@ class SourceFile {
 		_file = File( filename , "rb");
 	}
 
+	void read( ref bool[] data ){
+		_file.rawRead!(bool)( data );
+	}
+
 	void read( ref char[] data ){
 		_file.rawRead!(char)( data );
 	}

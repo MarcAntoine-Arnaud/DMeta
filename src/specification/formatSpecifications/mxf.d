@@ -1,5 +1,6 @@
 import specification.spec;
 import specification.node;
+import specification.nodes.nodeBit;
 import specification.nodes.nodeGroup;
 import specification.nodes.nodeChar;
 import specification.nodes.nodeShort;
@@ -7,6 +8,8 @@ import specification.nodes.nodeShort;
 class MxfSpecification : Specification{
 	string rootId = "root";
 	string keyId = "key";
+	string lengthId = "length";
+	string valueId = "value";
 	string objectIdentifierId = "objectIdentifier";
 	string labelSizeId = "labelSize";
 	string designatorId = "designator";
@@ -22,7 +25,12 @@ class MxfSpecification : Specification{
 	string setPackKindId = "setPackKind";
 	string partitionStatusId = "partitionStatus";
 	string reservedId = "reserved";
-	
+
+	string berLengthTypeId = "berLengthType";
+	string berLengthSize1Id = "berLengthSize1";
+	string berLengthSize2Id = "berLengthSize2";
+	string berLengthSize3Id = "berLengthSize3";
+
 	this() {
 		_id = "mxf";
 		_label = "Material Exchange Format";
@@ -31,7 +39,9 @@ class MxfSpecification : Specification{
 		
 		auto root = new NodeGroup( rootId );
 
-		auto partitionKey = new NodeGroup( keyId );
+		auto key = new NodeGroup( keyId );
+		auto length = new NodeGroup( lengthId );
+		auto value = new NodeGroup( valueId );
 
 		auto objectIdentifier = new NodeChar( objectIdentifierId );
 		auto labelSize = new NodeChar( labelSizeId );
@@ -79,23 +89,35 @@ class MxfSpecification : Specification{
 		partitionStatus.addMapValue( 0x03, "Open and Complete" );
 		partitionStatus.addMapValue( 0x04, "Closed and Incomplete" );
 
-		partitionKey.addChild( objectIdentifier );
-		partitionKey.addChild( labelSize );
-		partitionKey.addChild( designator );
-		partitionKey.addChild( registryCategoryDesignator );
-		partitionKey.addChild( registryDesignator );
-		partitionKey.addChild( structureDesignator );
-		partitionKey.addChild( versionNumber );
-		partitionKey.addChild( itemDesignator );
-		partitionKey.addChild( organization );
-		partitionKey.addChild( application );
-		partitionKey.addChild( structureVersion );
-		partitionKey.addChild( structureKind );
-		partitionKey.addChild( setPackKind );
-		partitionKey.addChild( partitionStatus );
-		partitionKey.addChild( reserved );
+		key.addChild( objectIdentifier );
+		key.addChild( labelSize );
+		key.addChild( designator );
+		key.addChild( registryCategoryDesignator );
+		key.addChild( registryDesignator );
+		key.addChild( structureDesignator );
+		key.addChild( versionNumber );
+		key.addChild( itemDesignator );
+		key.addChild( organization );
+		key.addChild( application );
+		key.addChild( structureVersion );
+		key.addChild( structureKind );
+		key.addChild( setPackKind );
+		key.addChild( partitionStatus );
+		key.addChild( reserved );
 
-		root.addChild( partitionKey );
+		auto berLengthType = new NodeChar( berLengthTypeId );
+		berLengthType.setValue( 131 ); // 0x83
+		length.addChild( berLengthType );
+
+		auto berLengthSize1 = new NodeChar( berLengthSize1Id );
+		auto berLengthSize2 = new NodeChar( berLengthSize2Id );
+		auto berLengthSize3 = new NodeChar( berLengthSize3Id );
+		berLengthType.addChild( berLengthSize1 );
+		berLengthType.addChild( berLengthSize2 );
+		berLengthType.addChild( berLengthSize3 );
+
+		root.addChild( key );
+		root.addChild( length );
 
 		add( root );
 	}

@@ -7,14 +7,14 @@ class NodeBit : Node {
 
 	this(ref string id) {
 		super( id, EDataType.eBit );
-		bitcount = 1;
+		_bitcount = 1;
 	}
 
 	override {
 		void isValid(ref SourceFile file) {
 			// valid if childs are fine
 			bool[] data;
-			data.length = bitcount;
+			data.length = _bitcount;
 			file.read( data );
 
 			foreach(bool dataBit; data){
@@ -29,5 +29,11 @@ class NodeBit : Node {
 		}
 	}
 
-	int bitcount;
+	void setValue(bool[] values) {
+		_values.length = values.length;
+		_values = values;
+	}
+
+	int _bitcount;
+	bool[] _values;
 }

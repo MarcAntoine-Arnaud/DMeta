@@ -12,7 +12,7 @@ enum EDataType {
 	eFloat,
 	eDouble,
 	eString,
-	eWord,	
+	eWord,
 	eRaw,
 }
 
